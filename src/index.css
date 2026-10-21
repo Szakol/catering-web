@@ -1,0 +1,34 @@
+@import "tailwindcss";
+
+@theme {
+    --color-brand-50: #fff7f8;
+    --color-brand-100: #ffeced;
+    --color-brand-200: #ffdde0;
+    --color-brand-300: #ffc9cd; /* tło logo: zmierz pipetą i popraw, jeśli widać krawędzie obrazka */
+    --color-brand-400: #ffa8b3;
+    --color-brand-500: #e8678d;
+    --color-brand-600: #c94476;
+    --color-brand-700: #a63361;
+    --color-brand-800: #7d2748;
+    --color-brand-900: #4f1a2e;
+}
+
+@layer components {
+    .btn-primary {
+        @apply inline-block rounded-2xl bg-brand-300 px-6 py-3 text-lg font-semibold text-brand-900 shadow transition;
+        @apply enabled:hover:bg-brand-400 disabled:cursor-not-allowed disabled:opacity-40;
+    }
+
+    .btn-secondary {
+        @apply inline-block rounded-2xl border-2 border-brand-300 bg-white px-6 py-3 text-lg font-semibold text-brand-800 transition hover:bg-brand-100;
+    }
+
+    .btn-light {
+        @apply inline-block rounded-2xl bg-white px-6 py-3 text-lg font-semibold text-brand-800 shadow transition hover:bg-brand-50;
+    }
+
+    .input {
+        @apply w-full rounded-xl border border-stone-300 bg-white px-3 py-2 text-stone-900 transition;
+        @apply focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-300;
+    }
+}
