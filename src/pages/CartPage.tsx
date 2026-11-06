@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router'
 import { MAX_BOX_QUANTITY, useCart } from '../cart/cart'
+import { site } from '../content'
 import { formatPrice } from '../utils/format'
 
 export default function CartPage() {
@@ -81,7 +82,7 @@ export default function CartPage() {
                             <span className="text-3xl font-bold text-stone-900">{formatPrice(total)}</span>
                         </div>
                         <p className="mt-2 text-xs text-stone-500">
-                            Ostateczną kwotę potwierdzimy po złożeniu zamówienia. Odbiór osobisty.
+                            Ostateczną kwotę potwierdzimy po złożeniu zamówienia. {site.pickupInfo}.
                         </p>
                     </div>
 

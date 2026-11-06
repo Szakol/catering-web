@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, Navigate, useLocation } from 'react-router'
 import type { OrderConfirmation, PaymentMethod } from '../api/types'
+import { site } from '../content'
 import { formatPrice } from '../utils/format'
 
 const PAYMENT_LABELS: Record<PaymentMethod, string> = {
@@ -36,6 +37,7 @@ export default function ConfirmationPage() {
           ✓
         </span>
                 <h1 className="mt-4 text-3xl font-bold text-stone-900">Dziękujemy za zamówienie!</h1>
+                <p className="mt-1 text-stone-600">{site.pickupInfo}.</p>
                 <p className="mt-2 text-stone-600">Zamówienie zostało przyjęte i czeka na potwierdzenie.</p>
 
                 <div className="mx-auto mt-6 max-w-sm rounded-2xl border-2 border-brand-300 bg-brand-100 p-4">

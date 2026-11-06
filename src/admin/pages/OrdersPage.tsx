@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router'
 import { formatPrice } from '../../utils/format'
 import { adminApi, UnauthorizedError } from '../adminApi'
 import { OrderStatusBadge, PaymentStatusBadge } from '../badges'
-import { formatDateTime, PAYMENT_METHOD_LABELS, SOURCE_LABELS, STATUS_FILTERS } from '../labels'
+import { formatDateTime, PAYMENT_METHOD_LABELS, STATUS_FILTERS } from '../labels'
 import type { AdminOrder, OrderStatus } from '../types'
 
 type Filter = 'ALL' | OrderStatus
@@ -161,20 +161,19 @@ export default function OrdersPage() {
                         <th className="px-4 py-3 text-right">Wartość</th>
                         <th className="px-4 py-3">Status</th>
                         <th className="px-4 py-3">Płatność</th>
-                        <th className="hidden px-4 py-3 lg:table-cell">Źródło</th>
                     </tr>
                     </thead>
                     <tbody>
                     {loading && (
                         <tr>
-                            <td colSpan={7} className="px-4 py-10 text-center text-stone-500">
+                            <td colSpan={6} className="px-4 py-10 text-center text-stone-500">
                                 Ładowanie…
                             </td>
                         </tr>
                     )}
                     {!loading && visible.length === 0 && (
                         <tr>
-                            <td colSpan={7} className="px-4 py-10 text-center text-stone-500">
+                            <td colSpan={6} className="px-4 py-10 text-center text-stone-500">
                                 Brak zamówień do wyświetlenia.
                             </td>
                         </tr>
@@ -218,7 +217,6 @@ export default function OrdersPage() {
                                 </div>
                                 <div className="mt-0.5 text-xs text-stone-500">{PAYMENT_METHOD_LABELS[o.paymentMethod]}</div>
                             </td>
-                            <td className="hidden px-4 py-3 text-stone-500 lg:table-cell">{SOURCE_LABELS[o.source]}</td>
                         </tr>
                     ))}
                     </tbody>
