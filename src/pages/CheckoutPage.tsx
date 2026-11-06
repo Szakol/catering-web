@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router'
 import { api } from '../api/client'
 import type { PaymentMethod } from '../api/types'
 import { useCart } from '../cart/cart'
+import { MIN_DAYS_AHEAD, PICKUP_FROM, PICKUP_TO } from '../config'
 import { site } from '../content'
 import { formatPrice } from '../utils/format'
 
@@ -36,8 +37,15 @@ const PAYMENT_OPTIONS: { value: PaymentMethod; label: string }[] = [
     { value: 'TRANSFER', label: 'Przelew' },
 ]
 
-function todayIso(): string {
-    return new Date().toLocaleDateString('sv-SE') // format RRRR-MM-DD w czasie lokalnym
+function isoDate(d: Date): string {
+    return d.toLocaleDateString('sv-SE') // format RRRR-MM-DD w czasie lokalnym
+}
+
+/** Najwcześniejszy dzień odbioru: dziś + MIN_DAYS_AHEAD dni kalendarzowych */
+function earliestPickupDate(): string {
+    const d = new Date()
+    d.setDate(d.getDate() + MIN_DAYS_AHEAD)
+    return isoDate(d)
 }
 
 function validate(form: FormState): Errors {
@@ -54,8 +62,10 @@ function validate(form: FormState): Errors {
     }
     if (!form.date || !form.time) {
         errors.when = 'Wybierz datę i godzinę odbioru.'
-    } else if (new Date(`${form.date}T${form.time}`).getTime() <= Date.now()) {
-        errors.when = 'Termin odbioru musi być w przyszłości.'
+    } else if (form.date < earliestPickupDate()) {
+        errors.when = `Zamówienie składamy z minimum ${MIN_DAYS_AHEAD} dniami wyprzedzenia. Najwcześniejszy termin: ${earliestPickupDate()}.`
+    } else if (form.time < PICKUP_FROM || form.time > PICKUP_TO) {
+        errors.when = `Odbiór jest możliwy w godzinach ${PICKUP_FROM}–${PICKUP_TO}.`
     }
 
     return errors
@@ -175,19 +185,25 @@ export default function CheckoutPage() {
                             <p className="text-sm text-stone-600">Miejsce odbioru: {site.contact.city}</p>
                         </div>
                         <div className="grid gap-4 sm:grid-cols-2">
-                            <Field label="Data odbioru" error={errors.when}>
+                            <Field
+                                label="Data odbioru"
+                                error={errors.when}
+                                hint={`Zamówienie z minimum ${MIN_DAYS_AHEAD} dniami wyprzedzenia.`}
+                            >
                                 <input
                                     className="input"
                                     type="date"
-                                    min={todayIso()}
+                                    min={earliestPickupDate()}
                                     value={form.date}
                                     onChange={(e) => update('date', e.target.value)}
                                 />
                             </Field>
-                            <Field label="Godzina odbioru">
+                            <Field label="Godzina odbioru" hint={`Odbiór w godzinach ${PICKUP_FROM}–${PICKUP_TO}.`}>
                                 <input
                                     className="input"
                                     type="time"
+                                    min={PICKUP_FROM}
+                                    max={PICKUP_TO}
                                     value={form.time}
                                     onChange={(e) => update('time', e.target.value)}
                                 />

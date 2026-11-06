@@ -1,3 +1,5 @@
+import { MIN_DAYS_AHEAD, PICKUP_FROM, PICKUP_TO } from './config'
+
 export const site = {
     name: 'Catering Na Piątkę',
     tagline: 'Catering na każdą okazję. Skomponuj swój box z tego, co lubisz.',
@@ -7,7 +9,7 @@ export const site = {
         city: 'Zblewo',
     },
     /** Krótka informacja o miejscu odbioru, pokazywana w konfiguratorze, koszyku i formularzu */
-    pickupInfo: 'Odbiór osobisty w miejscowości Zblewo',
+    pickupInfo: `Odbiór osobisty w miejscowości Zblewo, ${PICKUP_FROM}–${PICKUP_TO}`,
 }
 
 export interface HeroSlide {
@@ -70,7 +72,11 @@ export const faq = [
     },
     {
         q: 'Jak wcześnie trzeba zamawiać?',
-        a: 'Zamówienie najlepiej złożyć z wyprzedzeniem. Dokładny minimalny czas ustala właściciel.', // TODO: wpisać konkret
+        a: `Zamówienie składasz z minimum ${MIN_DAYS_AHEAD} dniami wyprzedzenia. Podejście jest indywidualne do każdego zamówienia, więc potrzebujemy czasu, żeby je dobrze przygotować.`,
+    },
+    {
+        q: 'W jakich godzinach mogę odebrać zamówienie?',
+        a: `Odbiór w Zblewie jest możliwy w godzinach ${PICKUP_FROM}–${PICKUP_TO}.`,
     },
     {
         q: 'Co z alergenami?',
