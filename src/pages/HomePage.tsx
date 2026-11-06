@@ -151,7 +151,7 @@ export default function HomePage() {
             <section className="bg-white">
                 <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2">
                     <motion.div {...fadeUp} className="mx-auto w-full max-w-sm overflow-hidden rounded-3xl bg-brand-300 shadow-lg">
-                        <img src="/logo.png" alt="Na Piątkę catering" className="w-full" />
+                        <img src="/logo.png" alt="Catering Na Piątkę" className="w-full" />
                     </motion.div>
                     <motion.div {...fadeUp}>
                         <h2 className="text-3xl font-bold text-stone-900">{about.title}</h2>

@@ -1,11 +1,13 @@
 export const site = {
-    name: 'Na Piątkę',
+    name: 'Catering Na Piątkę',
     tagline: 'Catering na każdą okazję. Skomponuj swój box z tego, co lubisz.',
     contact: {
-        phone: '+48 000 000 000', // TODO
-        email: 'kontakt@example.com', // TODO
-        city: 'Miasto', // TODO
+        phone: '+48 798 223 774',
+        email: 'paulina72726@gmail.com',
+        city: 'Zblewo',
     },
+    /** Krótka informacja o miejscu odbioru, pokazywana w konfiguratorze, koszyku i formularzu */
+    pickupInfo: 'Odbiór osobisty w miejscowości Zblewo',
 }
 
 export interface HeroSlide {
@@ -24,7 +26,7 @@ export const heroSlides: HeroSlide[] = [
 ]
 
 export const about = {
-    title: 'Poznaj Na Piątkę',
+    title: 'Poznaj Catering Na Piątkę',
     paragraphs: [
         // TODO: kilka zdań od właścicielki: kim jest, skąd pomysł na catering w boxach, czym się wyróżnia
         'Tu pojawi się kilka zdań o firmie.',
@@ -64,7 +66,7 @@ export const faq = [
     },
     {
         q: 'Czy jest dostawa?',
-        a: 'Na razie zamówienia odbierasz osobiście. Dostawę do domu planujemy dodać w przyszłości.',
+        a: 'Na razie zamówienia odbierasz osobiście w miejscowości Zblewo. Dostawę do domu planujemy dodać w przyszłości.',
     },
     {
         q: 'Jak wcześnie trzeba zamawiać?',

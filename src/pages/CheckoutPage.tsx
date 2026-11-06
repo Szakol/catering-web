@@ -3,6 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router'
 import { api } from '../api/client'
 import type { PaymentMethod } from '../api/types'
 import { useCart } from '../cart/cart'
+import { site } from '../content'
 import { formatPrice } from '../utils/format'
 
 const PHONE_RE = /^[+0-9 ()-]{9,20}$/
@@ -169,7 +170,10 @@ export default function CheckoutPage() {
                     </section>
 
                     <section className="space-y-4">
-                        <h2 className="text-lg font-semibold text-stone-900">Odbiór osobisty</h2>
+                        <div>
+                            <h2 className="text-lg font-semibold text-stone-900">Odbiór osobisty</h2>
+                            <p className="text-sm text-stone-600">Miejsce odbioru: {site.contact.city}</p>
+                        </div>
                         <div className="grid gap-4 sm:grid-cols-2">
                             <Field label="Data odbioru" error={errors.when}>
                                 <input

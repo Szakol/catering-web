@@ -60,8 +60,16 @@ export default function Layout() {
                     </div>
                     <div className="sm:text-right">
                         <p>{site.contact.city}</p>
-                        <p>{site.contact.phone}</p>
-                        <p>{site.contact.email}</p>
+                        <p>
+                            <a href={`tel:${site.contact.phone.replace(/\s/g, '')}`} className="hover:text-brand-700">
+                                {site.contact.phone}
+                            </a>
+                        </p>
+                        <p>
+                            <a href={`mailto:${site.contact.email}`} className="hover:text-brand-700">
+                                {site.contact.email}
+                            </a>
+                        </p>
                     </div>
                 </div>
             </footer>

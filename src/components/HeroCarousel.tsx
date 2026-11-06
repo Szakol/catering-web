@@ -18,7 +18,7 @@ export default function HeroCarousel() {
 
     // brak zdjęć: pokazujemy logo
     if (count === 0) {
-        return <img src="/logo.png" alt="Na Piątkę catering: box z przekąskami" className="mx-auto w-full max-w-md" />
+        return <img src="/logo.png" alt="Catering Na Piątkę: box z przekąskami" className="mx-auto w-full max-w-md" />
     }
 
     const slide = heroSlides[index % count]
